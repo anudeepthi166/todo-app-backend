@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "Anu@1234",
+    "database": "todoApp",
+    "host": "localhost",
+    "dialect": "mssql"
+  }
+}
