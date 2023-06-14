@@ -6,7 +6,7 @@ exports.loginValidations=(req,res,next)=>{
 
     email:Joi.string().email({tlds:{allow:['com']}}).required(),
 
-    password:Joi.string().alphanum().required(),
+    password:Joi.string().required(),
    
 
 })

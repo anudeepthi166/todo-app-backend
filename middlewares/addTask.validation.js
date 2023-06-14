@@ -5,7 +5,8 @@ exports.taskNameValidation=(req,res,next)=>{
     
 
     taskName:Joi.string().required(),
-    userId:Joi.number().integer()
+    userId:Joi.number().integer(),
+    userEmail:Joi.string().required()
 
 
     

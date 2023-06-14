@@ -1,7 +1,14 @@
 const expressAsyncHandler = require("express-async-handler");
+//nodejs-nodemailer-outlook
+const nodeOutlook = require('nodejs-nodemailer-outlook');
+
+
+require("dotenv").config();
 
 //index file
 const db = require("../models/index");
+
+
 
 // ADD TASK
 exports.addTask = expressAsyncHandler(async (req, res) => {
@@ -9,8 +16,33 @@ exports.addTask = expressAsyncHandler(async (req, res) => {
   req.body.createdAt=new Date();
   req.body.updatedAt=new Date()
   let taskObj = await db.TodoTasks.create(req.body);
+
+  //get the admin roleId
+  let adminRoleId=await db.Role.findOne({where:{roleName:"admin"}})
+
+  //get the admin mail
+  let admin=await db.User.findAll({where:{
+    roleId:adminRoleId.dataValues.id
+  }})
+
+  let adminMail=admin.map((adminObj,index)=>adminObj.dataValues.email)
+    console.log(adminMail)
  
   if (taskObj?.dataValues) {
+    //send a mail
+    nodeOutlook.sendEmail({
+      auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PASSWORD
+      },
+      from: process.env.EMAIL,
+      to: [req.body.userEmail,adminMail],
+      subject: 'New Task Added',
+     
+      text: `${req.body.taskName} task was added by ${req.body.userEmail} `, onError: (e) => console.log(e),
+      onSuccess: (i) => console.log(i)})
+   
+   
     // send response
     res.status(201).send({
       message: "Task added successfully",

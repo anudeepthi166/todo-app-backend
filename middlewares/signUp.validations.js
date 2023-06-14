@@ -10,7 +10,7 @@ exports.signUpValidations=(req,res,next)=>{
 
     email:Joi.string().email({tlds:{allow:['com']}}).required(),
 
-    password:Joi.string().alphanum().min(3).required(),
+    password:Joi.string().min(3).required(),
    
 
 })

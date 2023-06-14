@@ -84,11 +84,11 @@ exports.login = expressAsyncHandler(async (req, res) => {
     }
     //Incorrect password
     else {
-      res.status(401).send({ payload: "Incorrect Password" });
+      res.status(401).send({ message: "Incorrect Password" });
     }
   }
   //if no user exists
   else {
-    res.status(401).send({ payload: "Please Register" });
+    res.status(401).send({ message: "Please Register" });
   }
 });
