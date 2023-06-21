@@ -1,11 +1,10 @@
 
 # SIGN UP 
-POST http://localhost:3000/user/sign-up
+POST http://localhost:5000/user/sign-up
 Content-Type: application/json
 
 {
-  "email":"validation@mail.com",
- 
+  "email":"user.dummy@mail.com",
   "password":"anu",
   "roleId":2
 }
@@ -82,6 +81,9 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:5000/task/inCompletedTasks
 
 
 
+###
+GET http://localhost:5000/subscription/createPortalSession/1/33

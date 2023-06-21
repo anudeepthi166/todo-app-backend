@@ -12,6 +12,7 @@ userApp.use(express.json());
 
 //defining routes
 userApp.post("/sign-up",signUpValidations, signUp);
+
 userApp.post("/login", loginValidations,login);
 
 //export userApp

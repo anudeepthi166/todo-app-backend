@@ -13,6 +13,7 @@ const { User } = require("../models/user");
 
 //SIGN UP
 exports.signUp = expressAsyncHandler(async (req, res) => {
+  console.log(req.body)
   // Hashing the password
   let hashedPassword = await bcrypt.hash(req.body.password, 5);
   req.body.password = hashedPassword;

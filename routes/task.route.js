@@ -11,7 +11,7 @@ const {
   addTask,
   editTask,
   allTasks,
-  completedTask,
+  completedTask,inCompletedTasks
 } = require("../controllers/task.controller");
 
 //Body parser
@@ -22,6 +22,7 @@ taskApp.post("/:taskName", verifyToken,taskNameValidation, addTask);
 taskApp.put("/:taskId", verifyToken, editTask);
 taskApp.put("/completedTask/:taskId", verifyToken, completedTask);
 taskApp.get("/allTasks/:userId", verifyToken, allTasks);
+taskApp.get("/inCompletedTasks",inCompletedTasks)
 
 //export taskApp
 module.exports = taskApp;
